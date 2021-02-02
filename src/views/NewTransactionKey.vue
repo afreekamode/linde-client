@@ -12,12 +12,12 @@
               <div class="col-md-6">
                 <input
                   type="text"
-                  v-model="form.reciever_fullname"
+                  v-model="form.receiver_fullname"
                   class="form-control"
-                  id="reciever_fullname"
+                  id="receiver_fullname"
                 />
-                <span class="text-danger" v-if="errors.reciever_fullname">
-                  {{ errors.reciever_fullname[0] }}
+                <span class="text-danger" v-if="errors.receiver_fullname">
+                  {{ errors.receiver_fullname[0] }}
                 </span>
               </div>
             </div>
@@ -29,12 +29,12 @@
               <div class="col-md-6">
                 <input
                   type="text"
-                  v-model="form.reciever_acc_no"
+                  v-model="form.receiver_acc_no"
                   class="form-control"
-                  id="reciever_acc_no"
+                  id="receiver_acc_no"
                 />
-                <span class="text-danger" v-if="errors.reciever_acc_no">
-                  {{ errors.reciever_acc_no[0] }}
+                <span class="text-danger" v-if="errors.receiver_acc_no">
+                  {{ errors.receiver_acc_no[0] }}
                 </span>
               </div>
             </div>
@@ -44,12 +44,12 @@
               <div class="col-md-6">
                 <input
                   type="text"
-                  v-model="form.recieving_bank_name"
+                  v-model="form.receiving_bank_name"
                   class="form-control"
-                  id="reciever_bank_name"
+                  id="receiver_bank_name"
                 />
-                <span class="text-danger" v-if="errors.recieving_bank_name">
-                  {{ errors.recieving_bank_name[0] }}
+                <span class="text-danger" v-if="errors.receiving_bank_name">
+                  {{ errors.receiving_bank_name[0] }}
                 </span>
               </div>
             </div>
@@ -94,12 +94,14 @@
                   class="btn btn-block"
                   type="submit"
                   :class="[
-                    form.reciever_fullname ? 'active' : 'inactive',
+                    form.receiver_fullname ? 'active' : 'inactive',
                     'plus'
                   ]"
                   @click.prevent="generate"
                 >
-                  Generate Key
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="35" height="35" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+</svg>
                 </button>
               </div>
             </div>
@@ -117,12 +119,12 @@ export default {
   data() {
     return {
       form: {
-        reciever_acc_no: "",
-        reciever_fullname: "",
+        receiver_acc_no: "",
+        receiver_fullname: "",
         amount: "",
         purpose: "",
         sender_phone: "",
-        recieving_bank_name: ""
+        receiving_bank_name: ""
       },
       errors: [],
       items: [],

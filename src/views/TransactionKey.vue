@@ -62,7 +62,6 @@ export default {
       Transaction.all_trxn_keys()
         .then(response => {
           this.items = response.data;
-          console.log(response.data);
         })
         .catch(err => console.log(err));
     },

@@ -6,8 +6,8 @@ export default {
     return Api().post("/trxn/generate/key", form);
   },
 
-  refresh_expired_key(form) {
-    return Api().get("/user/login", form);
+  cash_deposit(form) {
+    return Api().post("/trxn/cash-deposit", form);
   },
 
   refresh_trxn_keys(id) {
@@ -24,5 +24,8 @@ export default {
 
   mykeys() {
     return Api().get("/trxn/transaction/key/");
+  },
+  deletekey(key) {
+    return Api().delete("/trxn/delete-key/"+ key);
   }
 };

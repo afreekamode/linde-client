@@ -53,12 +53,14 @@
             </router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn && user.length !== 0">
             <router-link
+            v-if="(user.user_role === 'teller')"
               class="nav-link"
               data-offset="90"
               :to="{ name: 'Dashboard' }"
             >
+            
               Dashboard
             </router-link>
           </li>
@@ -74,7 +76,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn && user.length !== 0">
             <router-link
               class="nav-link"
               data-offset="90"
@@ -95,9 +97,9 @@
             </router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn && user.length !== 0">
             <router-link
-              v-if="(user.user.user_role = teller)"
+              v-if="(user.user_role === 'teller')"
               class="nav-link"
               data-offset="90"
               :to="{ name: 'TransactionKey' }"
@@ -119,13 +121,14 @@
         </ul>
         <!-- Social Icon  -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn && user.length !== 0">
             <router-link
-              v-if="isLoggedIn"
               class="nav-link"
               data-offset="90"
               :to="{ name: 'Profile' }"
-              ><span>{{ user.user.first_name }}</span>
+              ><span>{{user.user.first_name}}<svg xmlns="http://www.w3.org/2000/svg" fill="none" widght="35" height="35" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg></span>
             </router-link>
           </li>
 
@@ -162,7 +165,6 @@ export default {
     });
 
     this.isLoggedIn = !!localStorage.getItem("token");
-
     User.auth().then(response => {
       this.user = response.data;
     });
