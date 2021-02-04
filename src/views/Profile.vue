@@ -79,6 +79,7 @@ span {
 
 .wrap {
   padding: 10px;
+  padding-top: 20px;
 }
 
 .follow-header {

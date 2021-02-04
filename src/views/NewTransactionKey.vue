@@ -7,7 +7,7 @@
           <div class="card-body">
             <div class="form-group row">
               <label class="col-md-4 col-form-label text-md-right"
-                >Reciepient Name</label
+                >Recipient Name</label
               >
               <div class="col-md-6">
                 <input
@@ -24,7 +24,7 @@
 
             <div class="form-group row">
               <label class="col-md-4 col-form-label text-md-right"
-                >Account no:</label
+                >Recipient Account no:</label
               >
               <div class="col-md-6">
                 <input
@@ -40,14 +40,17 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-md-4 col-form-label text-md-right">Bank:</label>
+              <label class="col-md-4 col-form-label text-md-right">To Bank:</label>
               <div class="col-md-6">
-                <input
-                  type="text"
-                  v-model="form.receiving_bank_name"
+                <select
                   class="form-control"
-                  id="receiver_bank_name"
-                />
+                  v-model="form.receiving_bank_name"
+                >
+                  <option selected>Choose Bank</option>
+                  <option v-for="bank in banks" v-bind:key="bank.id">{{
+                    bank
+                  }}</option>
+                </select>
                 <span class="text-danger" v-if="errors.receiving_bank_name">
                   {{ errors.receiving_bank_name[0] }}
                 </span>
@@ -99,9 +102,7 @@
                   ]"
                   @click.prevent="generate"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="35" height="35" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-</svg>
+                 Generate Key
                 </button>
               </div>
             </div>
@@ -129,311 +130,67 @@ export default {
       errors: [],
       items: [],
       banks: [
-        {
-          id: 132,
-          code: "560",
-          name: "Page MFBank"
-        },
-        {
-          id: 133,
-          code: "304",
-          name: "Stanbic Mobile Money"
-        },
-        {
-          id: 134,
-          code: "308",
-          name: "FortisMobile"
-        },
-        {
-          id: 135,
-          code: "328",
-          name: "TagPay"
-        },
-        {
-          id: 136,
-          code: "309",
-          name: "FBNMobile"
-        },
-        {
-          id: 137,
-          code: "011",
-          name: "First Bank of Nigeria"
-        },
-        {
-          id: 138,
-          code: "326",
-          name: "Sterling Mobile"
-        },
-        {
-          id: 139,
-          code: "990",
-          name: "Omoluabi Mortgage Bank"
-        },
-        {
-          id: 140,
-          code: "311",
-          name: "ReadyCash (Parkway)"
-        },
-        {
-          id: 141,
-          code: "057",
-          name: "Zenith Bank"
-        },
-        {
-          id: 142,
-          code: "068",
-          name: "Standard Chartered Bank"
-        },
-        {
-          id: 143,
-          code: "306",
-          name: "eTranzact"
-        },
-        {
-          id: 144,
-          code: "070",
-          name: "Fidelity Bank"
-        },
-        {
-          id: 145,
-          code: "023",
-          name: "CitiBank"
-        },
-        {
-          id: 146,
-          code: "215",
-          name: "Unity Bank"
-        },
-        {
-          id: 147,
-          code: "323",
-          name: "Access Money"
-        },
-        {
-          id: 148,
-          code: "302",
-          name: "Eartholeum"
-        },
-        {
-          id: 149,
-          code: "324",
-          name: "Hedonmark"
-        },
-        {
-          id: 150,
-          code: "325",
-          name: "MoneyBox"
-        },
-        {
-          id: 151,
-          code: "301",
-          name: "JAIZ Bank"
-        },
-        {
-          id: 152,
-          code: "050",
-          name: "Ecobank Plc"
-        },
-        {
-          id: 153,
-          code: "307",
-          name: "EcoMobile"
-        },
-        {
-          id: 154,
-          code: "318",
-          name: "Fidelity Mobile"
-        },
-        {
-          id: 155,
-          code: "319",
-          name: "TeasyMobile"
-        },
-        {
-          id: 156,
-          code: "999",
-          name: "NIP Virtual Bank"
-        },
-        {
-          id: 157,
-          code: "320",
-          name: "VTNetworks"
-        },
-        {
-          id: 158,
-          code: "221",
-          name: "Stanbic IBTC Bank"
-        },
-        {
-          id: 159,
-          code: "501",
-          name: "Fortis Microfinance Bank"
-        },
-        {
-          id: 160,
-          code: "329",
-          name: "PayAttitude Online"
-        },
-        {
-          id: 161,
-          code: "322",
-          name: "ZenithMobile"
-        },
-        {
-          id: 162,
-          code: "303",
-          name: "ChamsMobile"
-        },
-        {
-          id: 163,
-          code: "403",
-          name: "SafeTrust Mortgage Bank"
-        },
-        {
-          id: 164,
-          code: "551",
-          name: "Covenant Microfinance Bank"
-        },
-        {
-          id: 165,
-          code: "415",
-          name: "Imperial Homes Mortgage Bank"
-        },
-        {
-          id: 166,
-          code: "552",
-          name: "NPF MicroFinance Bank"
-        },
-        {
-          id: 167,
-          code: "526",
-          name: "Parralex"
-        },
-        {
-          id: 168,
-          code: "035",
-          name: "Wema Bank"
-        },
-        {
-          id: 169,
-          code: "084",
-          name: "Enterprise Bank"
-        },
-        {
-          id: 170,
-          code: "063",
-          name: "Diamond Bank"
-        },
-        {
-          id: 171,
-          code: "305",
-          name: "Paycom"
-        },
-        {
-          id: 172,
-          code: "100",
-          name: "SunTrust Bank"
-        },
-        {
-          id: 173,
-          code: "317",
-          name: "Cellulant"
-        },
-        {
-          id: 174,
-          code: "401",
-          name: "ASO Savings and & Loans"
-        },
-        {
-          id: 175,
-          code: "030",
-          name: "Heritage"
-        },
-        {
-          id: 176,
-          code: "402",
-          name: "Jubilee Life Mortgage Bank"
-        },
-        {
-          id: 177,
-          code: "058",
-          name: "GTBank Plc"
-        },
-        {
-          id: 178,
-          code: "032",
-          name: "Union Bank"
-        },
-        {
-          id: 179,
-          code: "232",
-          name: "Sterling Bank"
-        },
-        {
-          id: 180,
-          code: "076",
-          name: "Skye Bank"
-        },
-        {
-          id: 181,
-          code: "082",
-          name: "Keystone Bank"
-        },
-        {
-          id: 182,
-          code: "327",
-          name: "Pagatech"
-        },
-        {
-          id: 183,
-          code: "559",
-          name: "Coronation Merchant Bank"
-        },
-        {
-          id: 184,
-          code: "601",
-          name: "FSDH"
-        },
-        {
-          id: 185,
-          code: "313",
-          name: "Mkudi"
-        },
-        {
-          id: 186,
-          code: "214",
-          name: "First City Monument Bank"
-        },
-        {
-          id: 187,
-          code: "314",
-          name: "FET"
-        },
-        {
-          id: 188,
-          code: "523",
-          name: "Trustbond"
-        },
-        {
-          id: 189,
-          code: "315",
-          name: "GTMobile"
-        },
-        {
-          id: 190,
-          code: "033",
-          name: "United Bank for Africa"
-        },
-        {
-          id: 191,
-          code: "044",
-          name: "Access Bank"
-        },
-        {
-          id: 567,
-          code: "90115",
-          name: "TCF MFB"
-        }
+        "Page MFBank",
+        "Stanbic Mobile Money",
+        "FortisMobile",
+        "TagPay",
+        "FBNMobile",
+        "First Bank of Nigeria",
+        "Sterling Mobile",
+        "Omoluabi Mortgage Bank",
+        "ReadyCash (Parkway)",
+        "Zenith Bank",
+        "Standard Chartered Bank",
+        "eTranzact",
+        "Fidelity Bank",
+        "CitiBank",
+        "Unity Bank",
+        "Access Money",
+        "Eartholeum",
+        "Hedonmark",
+        "MoneyBox",
+        "JAIZ Bank",
+        "Ecobank Plc",
+        "EcoMobile",
+        "Fidelity Mobile",
+        "TeasyMobile",
+        "NIP Virtual Bank",
+        "VTNetworks",
+        "Stanbic IBTC Bank",
+        "Fortis Microfinance Bank",
+        "PayAttitude Online",
+        "ZenithMobile",
+        "ChamsMobile",
+        "SafeTrust Mortgage Bank",
+        "Covenant Microfinance Bank",
+        "Imperial Homes Mortgage Bank",
+        "NPF MicroFinance Bank",
+        "Parralex",
+        "Wema Bank",
+        "Enterprise Bank",
+        "Diamond Bank",
+        "Paycom",
+        "SunTrust Bank",
+        "Cellulant",
+        "ASO Savings and & Loans",
+        "Heritage",
+        "Jubilee Life Mortgage Bank",
+        "GTBank Plc",
+        "Union Bank",
+        "Sterling Bank",
+        "Skye Bank",
+        "Keystone Bank",
+        "Pagatech",
+        "Coronation Merchant Bank",
+        "FSDH",
+        "Mkudi",
+        "First City Monument Bank",
+        "FET",
+        "Trustbond",
+        "GTMobile",
+        "United Bank for Africa",
+        "Access Bank",
+        "TCF MFB"
       ]
     };
   },

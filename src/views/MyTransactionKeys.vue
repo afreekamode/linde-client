@@ -4,11 +4,11 @@
       <div class="col-md-8">
         <div class="card-body">
           <h3 class="card-title">Transaction Keys</h3>
-          <div v-for="(item, index) in items" v-bind:key="index" ref="body">
+          <div v-for="(item, index) in items" v-bind:key="index"  v-on:keyChange="mykeys()">
             <div class="card">
               <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-right">
-                 Key
+                  Key
                 </label>
                 <div class="col-md-6">
                   <h4 class="itemText" style="color:green">
@@ -29,23 +29,46 @@
                         class="btn btn-success btn-rounded btn-sm"
                         @click.prevent="refreshKey(item.transaction_ref)"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="15" height="15" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-</svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                          />
+                        </svg>
                       </button>
-                    
                     </span>
-                      <span>
-                         <button
+                    <span>
+                      <button
                         type="button"
                         class="btn btn-success btn-rounded btn-sm"
                         @click.prevent="deleteKey(item.transaction_ref)"
                       >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-</svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="red"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          height="18"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
                       </button>
-                      </span>
+                    </span>
                   </p>
                 </div>
               </div>
@@ -81,23 +104,25 @@ export default {
         .then(response => {
           if (response.status == 200) {
             this.$emit("keyChange");
+            this.items.push(this.items);
             console.log(response.data);
           }
         })
         .catch(err => console.log(err));
     },
-  deleteKey(id) {
+    deleteKey(id) {
       Trxn.deletekey(id)
         .then(response => {
           if (response.status == 200) {
+            this.items.push(this.items);
             this.$emit("keyChange");
           }
         })
         .catch(err => console.log(err));
     },
-  onUpdate() {
-    this.$refs.div.refresh();
-  }
+    onUpdate() {
+      this.$refs.div.refresh();
+    }
   }
 };
 </script>
@@ -118,7 +143,7 @@ export default {
 .itemText {
   margin-left: 5px;
 }
-span{
-  padding:5px;
+span {
+  padding: 5px;
 }
 </style>

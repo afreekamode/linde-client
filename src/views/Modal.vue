@@ -5,41 +5,9 @@
         <div class="card">
           <div class="card-header text-primary">Cash Deposit</div>
           <div class="card-body">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label text-md-right"
-                >Transaction Key</label
-              >
-              <div class="col-md-6">
-                <input
-                  type="text"
-                  v-model="form.transaction_ref"
-                  class="form-control"
-                  id="transaction_ref"
-                />
-                <span class="text-danger" v-if="errors.transaction_ref">
-                  {{ errors.transaction_ref[0] }}
-                </span>
-              </div>
-            </div>
-            <div class="form-group row mb-0">
-              <div class="col-md-6 offset-md-4">
-                <button
-                  class="btn btn-block"
-                  type="submit"
-                  :class="[
-                    form.transaction_ref ? 'active' : 'inactive',
-                    'plus'
-                  ]"
-                  @click.prevent="confirmed(form.transaction_ref)"
-                >
-                  Verify key
-                </button>
-              </div>
-            </div>
-            <hr />
             <div v-if="item.length === 0"></div>
             <div v-else>
-              <form ref="myform" @submit.prevent="confirmed_deposit">
+              <form ref="form" @submit.stop.prevent="handleSubmit">
                 <div class="form-group row">
                   <div class="col-md-6">
                     <input
@@ -56,7 +24,7 @@
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"
-                    >Recipient Name</label
+                    >Reciepient Name</label
                   >
                   <div class="col-md-6">
                     <input
@@ -73,7 +41,7 @@
 
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"
-                    >Recipient Account no:</label
+                    >Account no:</label
                   >
                   <div class="col-md-6">
                     <input
@@ -90,7 +58,7 @@
 
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"
-                    >Recipient Bank:</label
+                    >Bank:</label
                   >
                   <div class="col-md-6">
                     <input
@@ -163,7 +131,7 @@
                   <div class="col-md-6">
                     <input
                       type="text"
-                      v-model="form.from_bank_name"
+                      v-model="item.from_bank_name"
                       class="form-control"
                       id="from_bank_name"
                     />
@@ -179,9 +147,10 @@
                       class="btn btn-block"
                       type="submit"
                       :class="[
-                        item.TransactionData.transaction_ref ? 'active' : 'inactive',
+                        form.transaction_ref ? 'active' : 'inactive',
                         'plus'
                       ]"
+                      @click.prevent="confirmed_deposit"
                     >
                       Confirm deposit
                     </button>
@@ -198,43 +167,29 @@
 
 <script>
 import Key from "../apis/Transaction";
-
 export default {
+  props: ["item"],
   data() {
     return {
-      form:{
-        from_bank_name: ""
+      form: {
+        receiver_acc_no: "",
+        receiver_fullname: "",
+        amount: "",
+        purpose: "",
+        receiving_bank_name: "",
+        depositor_fullname: "",
+        from_bank_name: "",
+        transaction_ref: ""
       },
       errors: [],
-      item: []
     };
   },
   methods: {
-    confirmed(id) {
-      Key.a_trxn_key(id)
-        .then(response => {
-          if (response.status == 200) {
-            this.$emit("keyChange");
-             this.form = {
-                 receiver_acc_no: response.data.TransactionData.receiver_acc_no,
-                 receiver_fullname: response.data.TransactionData.receiver_fullname,
-                 amount: response.data.TransactionData.amount,
-                 purpose: response.data.TransactionData.purpose,
-                 receiving_bank_name: response.data.TransactionData.receiving_bank_name,
-                 depositor_fullname: response.data.TransactionData.depositor_fullname,
-                 transaction_ref: response.data.TransactionData.transaction_ref,
-             };
-            this.item = response.data;
-          }
-        })
-        .catch(err => console.log(err));
-    },
     confirmed_deposit() {
       Key.cash_deposit(this.form)
         .then(response => {
           if (response.status == 201) {
-              this.form = [];
-             alert(response.data.message);
+            this.form = "";
           }
         })
         .catch(error => {

@@ -26,6 +26,6 @@ export default {
     return Api().get("/trxn/transaction/key/");
   },
   deletekey(key) {
-    return Api().delete("/trxn/delete-key/"+ key);
+    return Api().delete("/trxn/delete-key/" + key);
   }
 };
