@@ -147,14 +147,13 @@
           </li>
 
           <li class="nav-item">
-            <a
+            <router-link
               class="nav-link"
               data-offset="90"
               v-if="isLoggedIn"
               @click.prevent="logout"
-              href="#"
-              >Logout</a
-            >
+              >logout
+            </router-link>
           </li>
         </ul>
       </div>

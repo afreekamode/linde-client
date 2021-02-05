@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-   <div class="alert alert-success spacing" role="alert" v-show="show">
-    {{ body }}
-  </div>
+    <div class="alert alert-success spacing" role="alert" v-show="show">
+      {{ body }}
+    </div>
     <div class="row justify-content-center py-5 mt-5">
       <div class="col-md-8">
         <div class="card-body">
@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       items: [],
-       show: false,
+      show: false,
       body: ""
     };
   },
@@ -106,7 +106,6 @@ export default {
         .then(response => {
           this.items = response.data;
         })
-        .catch(err => console.log(err));
     },
     refreshKey(id) {
       Trxn.refresh_trxn_keys(id)
@@ -116,7 +115,6 @@ export default {
             this.getKeys();
           }
         })
-        .catch(err => console.log(err));
     },
     deleteKey(id) {
       Trxn.deletekey(id)
@@ -126,9 +124,8 @@ export default {
             this.getKeys();
           }
         })
-        .catch(err => console.log(err));
     },
-   flash(message) {
+    flash(message) {
       this.show = true;
       this.body = message;
 

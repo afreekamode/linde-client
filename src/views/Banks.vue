@@ -229,7 +229,7 @@ export default {
               transaction_ref: response.data.TransactionData.transaction_ref
             };
             this.item = response.data;
-          }else{
+          } else {
             alert(response.data.message);
           }
         })
@@ -242,7 +242,7 @@ export default {
           if (response.status == 201) {
             this.flash(response.data.message, "success");
             this.form = "";
-          }else{
+          } else {
             alert(response.data.message);
           }
         })

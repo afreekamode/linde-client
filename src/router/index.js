@@ -12,7 +12,6 @@ import Bill from "../views/Bill.vue";
 import MyTransactionKey from "../views/MyTransactionKeys.vue";
 import Profile from "../views/Profile.vue";
 import UpdateProfile from "../views/UpdateProfile.vue";
-import Modal from "../views/Modal.vue";
 
 Vue.use(VueRouter);
 
@@ -65,12 +64,6 @@ const routes = [
     path: "/banks",
     name: "Banks",
     component: Banks,
-    meta: { authOnly: true }
-  },
-  {
-    path: "/deposit",
-    name: "Modal",
-    component: Modal,
     meta: { authOnly: true }
   },
   {
