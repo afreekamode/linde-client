@@ -63,7 +63,6 @@ export default {
         .then(response => {
           this.items = response.data;
         })
-        .catch(err => console.log(err));
     },
     refresh() {
       Transaction.refresh_trxn_keys(this.item.transaction_ref)
@@ -72,7 +71,6 @@ export default {
             this.$emit("keyChange");
           }
         })
-        .catch(err => console.log(err));
     }
   }
 };
