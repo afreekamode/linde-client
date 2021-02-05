@@ -233,7 +233,6 @@ export default {
             alert(response.data.message);
           }
         })
-        .catch(err => console.log(err));
     },
     confirmed_deposit(e) {
       e.preventDefault();
