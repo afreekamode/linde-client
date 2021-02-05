@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let BaseApi = axios.create({
-  baseURL: "http://localhost:8000/api/v1"
+  baseURL: "https://lindi-api.herokuapp.com/api/v1"
 });
 
 let Api = function() {

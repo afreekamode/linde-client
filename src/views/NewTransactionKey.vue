@@ -40,12 +40,11 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-md-4 col-form-label text-md-right">To Bank:</label>
+              <label class="col-md-4 col-form-label text-md-right"
+                >To Bank:</label
+              >
               <div class="col-md-6">
-                <select
-                  class="form-control"
-                  v-model="form.receiving_bank_name"
-                >
+                <select class="form-control" v-model="form.receiving_bank_name">
                   <option selected>Choose Bank</option>
                   <option v-for="bank in banks" v-bind:key="bank.id">{{
                     bank
@@ -102,7 +101,7 @@
                   ]"
                   @click.prevent="generate"
                 >
-                 Generate Key
+                  Generate Key
                 </button>
               </div>
             </div>
@@ -196,7 +195,8 @@ export default {
   },
 
   methods: {
-    generate() {
+    generate(e) {
+      e.preventDefault();
       Key.generate_transaction_key(this.form)
         .then(() => {
           this.$router.push({ name: "MyTransactionKey" });

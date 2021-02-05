@@ -1,10 +1,13 @@
 <template>
   <div class="container">
+   <div class="alert alert-success spacing" role="alert" v-show="show">
+    {{ body }}
+  </div>
     <div class="row justify-content-center py-5 mt-5">
       <div class="col-md-8">
         <div class="card-body">
           <h3 class="card-title">Transaction Keys</h3>
-          <div v-for="(item, index) in items" v-bind:key="index"  v-on:keyChange="mykeys()">
+          <div v-for="(item, index) in items" v-bind:key="index">
             <div class="card">
               <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-right">
@@ -84,11 +87,17 @@ import Trxn from "../apis/Transaction";
 export default {
   data() {
     return {
-      items: []
+      items: [],
+       show: false,
+      body: ""
     };
   },
   created() {
     this.getKeys();
+    if (this.message) {
+      this.flash(this.message);
+    }
+    window.events.$on("flash", message => this.flash(message));
   },
 
   methods: {
@@ -103,9 +112,8 @@ export default {
       Trxn.refresh_trxn_keys(id)
         .then(response => {
           if (response.status == 200) {
-            this.$emit("keyChange");
-            this.items.push(this.items);
-            console.log(response.data);
+            this.flash("Key refreshed Successfully", "success");
+            this.getKeys();
           }
         })
         .catch(err => console.log(err));
@@ -114,14 +122,22 @@ export default {
       Trxn.deletekey(id)
         .then(response => {
           if (response.status == 200) {
-            this.items.push(this.items);
-            this.$emit("keyChange");
+            this.flash("Key deleted Successfully", "success");
+            this.getKeys();
           }
         })
         .catch(err => console.log(err));
     },
-    onUpdate() {
-      this.$refs.div.refresh();
+   flash(message) {
+      this.show = true;
+      this.body = message;
+
+      setTimeout(() => {
+        this.hide();
+      }, 3500);
+    },
+    hide() {
+      this.show = false;
     }
   }
 };
@@ -145,5 +161,12 @@ export default {
 }
 span {
   padding: 5px;
+}
+.spacing {
+  width: 350px;
+  position: fixed;
+  right: 25px;
+  bottom: 15px;
+  z-index: 1;
 }
 </style>

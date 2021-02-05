@@ -179,7 +179,9 @@
                       class="btn btn-block"
                       type="submit"
                       :class="[
-                        item.TransactionData.transaction_ref ? 'active' : 'inactive',
+                        item.TransactionData.transaction_ref
+                          ? 'active'
+                          : 'inactive',
                         'plus'
                       ]"
                     >
@@ -202,7 +204,7 @@ import Key from "../apis/Transaction";
 export default {
   data() {
     return {
-      form:{
+      form: {
         from_bank_name: ""
       },
       errors: [],
@@ -214,27 +216,34 @@ export default {
       Key.a_trxn_key(id)
         .then(response => {
           if (response.status == 200) {
-            this.$emit("keyChange");
-             this.form = {
-                 receiver_acc_no: response.data.TransactionData.receiver_acc_no,
-                 receiver_fullname: response.data.TransactionData.receiver_fullname,
-                 amount: response.data.TransactionData.amount,
-                 purpose: response.data.TransactionData.purpose,
-                 receiving_bank_name: response.data.TransactionData.receiving_bank_name,
-                 depositor_fullname: response.data.TransactionData.depositor_fullname,
-                 transaction_ref: response.data.TransactionData.transaction_ref,
-             };
+            this.form = {
+              receiver_acc_no: response.data.TransactionData.receiver_acc_no,
+              receiver_fullname:
+                response.data.TransactionData.receiver_fullname,
+              amount: response.data.TransactionData.amount,
+              purpose: response.data.TransactionData.purpose,
+              receiving_bank_name:
+                response.data.TransactionData.receiving_bank_name,
+              depositor_fullname:
+                response.data.TransactionData.depositor_fullname,
+              transaction_ref: response.data.TransactionData.transaction_ref
+            };
             this.item = response.data;
+          }else{
+            alert(response.data.message);
           }
         })
         .catch(err => console.log(err));
     },
-    confirmed_deposit() {
+    confirmed_deposit(e) {
+      e.preventDefault();
       Key.cash_deposit(this.form)
         .then(response => {
           if (response.status == 201) {
-              this.form = [];
-             alert(response.data.message);
+            this.flash(response.data.message, "success");
+            this.form = "";
+          }else{
+            alert(response.data.message);
           }
         })
         .catch(error => {
