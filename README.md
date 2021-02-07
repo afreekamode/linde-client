@@ -1,4 +1,4 @@
-# vue-sanctum
+# lindi-App
 
 ## Project setup
 
