@@ -12,6 +12,7 @@ import Bill from "../views/Bill.vue";
 import MyTransactionKey from "../views/MyTransactionKeys.vue";
 import Profile from "../views/Profile.vue";
 import UpdateProfile from "../views/UpdateProfile.vue";
+import VerifyKey from "../views/VerifyEmail";
 
 Vue.use(VueRouter);
 
@@ -24,12 +25,14 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: Profile
+    component: Profile,
+    meta: { authOnly: true }
   },
   {
     path: "/update",
     name: "UpdateProfile",
-    component: UpdateProfile
+    component: UpdateProfile,
+    meta: { authOnly: true }
   },
   {
     path: "/landing",
@@ -46,6 +49,12 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    meta: { guestOnly: true }
+  },
+  {
+    path: "/verifyKey",
+    name: "VerifyKey",
+    component: VerifyKey,
     meta: { guestOnly: true }
   },
   {
@@ -113,7 +122,7 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (isLoggedIn()) {
       next({
-        path: "/landing",
+        path: "/",
         query: { redirect: to.fullPath }
       });
     } else {

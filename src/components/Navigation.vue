@@ -10,7 +10,7 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
+
         data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02"
         aria-expanded="false"
@@ -44,7 +44,6 @@
 
           <li class="nav-item">
             <router-link
-              data-toggle="collapse"
               v-if="isLoggedIn"
               class="nav-link"
               data-offset="90"
@@ -98,7 +97,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item" v-if="isLoggedIn">
+          <li class="nav-item" v-if="user.length !== 0">
             <router-link
               v-if="user.user.user_role == 'teller'"
               class="nav-link"
@@ -123,12 +122,13 @@
         <!-- Social Icon  -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item" v-if="isLoggedIn">
+            <a class="nav-link">
             <router-link
-              class="nav-link"
+              
               data-offset="90"
               :to="{ name: 'Profile' }"
               ><span
-                ><svg
+                >{{user.user.first_name}}<svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   widght="30"
@@ -144,16 +144,14 @@
                   /></svg
               ></span>
             </router-link>
+            </a>
           </li>
 
-          <li class="nav-item">
-            <router-link
-              class="nav-link"
+          <li class="nav-item nav-link"
               data-offset="90"
               v-if="isLoggedIn"
               @click.prevent="logout"
               >logout
-            </router-link>
           </li>
         </ul>
       </div>
@@ -163,31 +161,26 @@
 
 <script>
 import User from "../apis/User";
+import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      isLoggedIn: false,
-      user: null
-    };
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    }),
+  ...mapGetters(["isLoggedIn"])
   },
-
   mounted() {
-    this.$root.$on("login", () => {
-      this.isLoggedIn = true;
-    });
-
-    this.isLoggedIn = !!localStorage.getItem("token");
     User.auth().then(response => {
-      this.user = response.data;
+      this.$store.commit("AUTH_USER", response.data);
     });
   },
-
   methods: {
     logout() {
       User.logout().then(() => {
         localStorage.removeItem("token");
-        this.isLoggedIn = false;
+         this.$store.commit("LOGIN", false);
         this.$router.push({ name: "Home" });
       });
     }

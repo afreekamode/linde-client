@@ -11,7 +11,9 @@ export default {
   login(form) {
     return Api().post("/user/login", form);
   },
-
+  verify_email(verifycode) {
+    return Api().post("/user/verify/" + verifycode);
+  },
   logout() {
     return Api().post("/user/logout");
   },

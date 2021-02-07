@@ -3,9 +3,9 @@
     class="bg-gradient-to-r from-teal-400 to-blue-500 focus:from-pink-500 focus:to-orange-500"
   >
     <div class="flex-center position-ref full-height flex" id="main">
-      <div class="home text-center py-6 mt-6">
+      <div class="home text-center py-6 mt-6" style="margin:20px;">
         <h5>
-          Hey Hi <em v-if="user">{{ user.user.first_name }}</em
+          Hey Hi <em v-if="user.length != 0">{{ user.user.first_name }}</em
           >!<br />
           Welcome
         </h5>
@@ -18,15 +18,17 @@
 </template>
 <script>
 import User from "../apis/User";
+import { mapState } from "vuex";
+
 export default {
-  data() {
-    return {
-      user: null
-    };
+  computed: {
+      ...mapState({
+      user: state => state.auth.user
+    })
   },
   mounted() {
     User.auth().then(response => {
-      this.user = response.data;
+      this.$store.commit("AUTH_USER", response.data);
     });
     const loadingAnimationTime = 2000;
     const showMainAnimation = parent => {

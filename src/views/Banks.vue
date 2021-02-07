@@ -241,6 +241,7 @@ export default {
           if (response.status == 201) {
             this.flash(response.data.message, "success");
             this.form = "";
+            this.item = "";
           } else {
             alert(response.data.message);
           }

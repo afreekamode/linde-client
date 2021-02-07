@@ -5,8 +5,22 @@
     </div>
     <div class="row justify-content-center py-5 mt-5">
       <div class="col-md-8">
-        <div class="card-body">
+        <div class="card-body" v-if="items">
           <h3 class="card-title">Transaction Keys</h3>
+           <div v-if="items.length === 0">
+              <div class="col-md-6 offset-md-4">
+                <button
+                  class="btn btn-block"
+                  type="submit">
+                  <router-link
+                    data-offset="90"
+                    :to="{ name: 'CreateTransactionKey' }"
+                  >
+                    <h4>Hoops nothing found! click here to generate a new Key</h4>
+                  </router-link>
+                </button>
+              </div>
+          </div>
           <div v-for="(item, index) in items" v-bind:key="index">
             <div class="card">
               <div class="form-group row">
@@ -97,7 +111,7 @@ export default {
     if (this.message) {
       this.flash(this.message);
     }
-    window.events.$on("flash", message => this.flash(message));
+    window.events.on("flash", message => this.flash(message));
   },
 
   methods: {
@@ -128,7 +142,6 @@ export default {
     flash(message) {
       this.show = true;
       this.body = message;
-
       setTimeout(() => {
         this.hide();
       }, 3500);

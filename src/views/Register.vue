@@ -172,14 +172,13 @@ export default {
   methods: {
     register() {
       User.register(this.form)
-        .then(() => {
-          this.$router.push({ name: "Login" });
-        })
-        .catch(error => {
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors;
+        .then(response => {
+          if(response.status === 201){
+          this.$router.push({ name: "VerifyKey" });
+          }else{
+            alert(response.data.message);
           }
-        });
+        })
     }
   }
 };
