@@ -75,16 +75,15 @@ export default {
   },
   methods: {
     login() {
-      User.login(this.form)
-        .then(response => {
-          if(response.status == 200){
+      User.login(this.form).then(response => {
+        if (response.status == 200) {
           this.$store.commit("LOGIN", true);
           localStorage.setItem("token", response.data.Accesstoken);
           this.$router.push({ name: "Home" });
-          }else{
-            this.flash(response.data.message, "info");
-          }
-        })
+        } else {
+          this.flash(response.data.message, "info");
+        }
+      });
     }
   }
 };

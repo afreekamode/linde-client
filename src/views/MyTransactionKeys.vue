@@ -7,19 +7,18 @@
       <div class="col-md-8">
         <div class="card-body" v-if="items">
           <h3 class="card-title">Transaction Keys</h3>
-           <div v-if="items.length === 0">
-              <div class="col-md-6 offset-md-4">
-                <button
-                  class="btn btn-block"
-                  type="submit">
-                  <router-link
-                    data-offset="90"
-                    :to="{ name: 'CreateTransactionKey' }"
-                  >
-                    <h4>Hoops nothing found! click here to generate a new Key</h4>
-                  </router-link>
-                </button>
-              </div>
+           <div v-if="loading" class="btn btn-block">Loading...</div>
+           <div v-if="items.length == 0">
+            <div class="col-md-6 offset-md-4" v-if="!loading">
+              <button class="btn btn-block" type="submit">
+                <router-link
+                  data-offset="90"
+                  :to="{ name: 'CreateTransactionKey' }"
+                >
+                  <p>Hoops nothing found! click here to generate a new Key</p>
+                </router-link>
+              </button>
+            </div>
           </div>
           <div v-for="(item, index) in items" v-bind:key="index">
             <div class="card">
@@ -101,9 +100,11 @@ import Trxn from "../apis/Transaction";
 export default {
   data() {
     return {
-      items: [],
       show: false,
-      body: ""
+      body: "",
+      items: [],
+      loading: true,
+      errored: false
     };
   },
   created() {
@@ -119,16 +120,15 @@ export default {
       Trxn.mykeys()
         .then(response => {
           this.items = response.data;
-        })
+        }).finally(() => (this.loading = false));
     },
     refreshKey(id) {
-      Trxn.refresh_trxn_keys(id)
-        .then(response => {
-          if (response.status == 200) {
-            this.flash("Key refreshed Successfully", "success");
-            this.getKeys();
-          }
-        })
+      Trxn.refresh_trxn_keys(id).then(response => {
+        if (response.status == 200) {
+          this.flash("Key refreshed Successfully", "success");
+          this.getKeys();
+        }
+      });
     },
     deleteKey(id) {
       Trxn.deletekey(id)
@@ -136,8 +136,10 @@ export default {
           if (response.status == 200) {
             this.flash("Key deleted Successfully", "success");
             this.getKeys();
+          }else{
+            this.flash(response.data.message, "info");
           }
-        })
+        }).finally(() => (this.loading = false));
     },
     flash(message) {
       this.show = true;
@@ -173,7 +175,7 @@ span {
   padding: 5px;
 }
 .spacing {
-  width: 350px;
+  width: 250px;
   position: fixed;
   right: 25px;
   bottom: 15px;

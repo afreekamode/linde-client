@@ -213,26 +213,24 @@ export default {
   },
   methods: {
     confirmed(id) {
-      Key.a_trxn_key(id)
-        .then(response => {
-          if (response.status == 200) {
-            this.form = {
-              receiver_acc_no: response.data.TransactionData.receiver_acc_no,
-              receiver_fullname:
-                response.data.TransactionData.receiver_fullname,
-              amount: response.data.TransactionData.amount,
-              purpose: response.data.TransactionData.purpose,
-              receiving_bank_name:
-                response.data.TransactionData.receiving_bank_name,
-              depositor_fullname:
-                response.data.TransactionData.depositor_fullname,
-              transaction_ref: response.data.TransactionData.transaction_ref
-            };
-            this.item = response.data;
-          } else {
-            alert(response.data.message);
-          }
-        })
+      Key.a_trxn_key(id).then(response => {
+        if (response.status == 200) {
+          this.form = {
+            receiver_acc_no: response.data.TransactionData.receiver_acc_no,
+            receiver_fullname: response.data.TransactionData.receiver_fullname,
+            amount: response.data.TransactionData.amount,
+            purpose: response.data.TransactionData.purpose,
+            receiving_bank_name:
+              response.data.TransactionData.receiving_bank_name,
+            depositor_fullname:
+              response.data.TransactionData.depositor_fullname,
+            transaction_ref: response.data.TransactionData.transaction_ref
+          };
+          this.item = response.data;
+        } else {
+          alert(response.data.message);
+        }
+      });
     },
     confirmed_deposit(e) {
       e.preventDefault();

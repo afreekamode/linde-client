@@ -171,14 +171,13 @@ export default {
 
   methods: {
     register() {
-      User.register(this.form)
-        .then(response => {
-          if(response.status === 201){
+      User.register(this.form).then(response => {
+        if (response.status === 201) {
           this.$router.push({ name: "VerifyKey" });
-          }else{
-            alert(response.data.message);
-          }
-        })
+        } else {
+          alert(response.data.message);
+        }
+      });
     }
   }
 };

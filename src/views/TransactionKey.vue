@@ -59,18 +59,18 @@ export default {
 
   methods: {
     getKeys() {
-      Transaction.all_trxn_keys()
-        .then(response => {
-          this.items = response.data;
-        })
+      Transaction.all_trxn_keys().then(response => {
+        this.items = response.data;
+      });
     },
     refresh() {
-      Transaction.refresh_trxn_keys(this.item.transaction_ref)
-        .then(response => {
+      Transaction.refresh_trxn_keys(this.item.transaction_ref).then(
+        response => {
           if (response.status == 200) {
             this.$emit("keyChange");
           }
-        })
+        }
+      );
     }
   }
 };

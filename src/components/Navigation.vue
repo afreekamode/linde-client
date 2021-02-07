@@ -10,7 +10,7 @@
       <button
         class="navbar-toggler"
         type="button"
-
+        data-toggle="collapse"
         data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02"
         aria-expanded="false"
@@ -53,7 +53,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item" v-if="isLoggedIn">
+          <li class="nav-item" v-if="user.length !== 0">
             <router-link
               v-if="user.user.user_role == 'teller'"
               class="nav-link"
@@ -75,7 +75,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item" v-if="isLoggedIn">
+          <li class="nav-item" v-if="user.length !== 0">
             <router-link
               v-if="user.user.user_role == 'teller'"
               class="nav-link"
@@ -121,14 +121,11 @@
         </ul>
         <!-- Social Icon  -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item" v-if="isLoggedIn">
-            <a class="nav-link">
-            <router-link
-              
-              data-offset="90"
-              :to="{ name: 'Profile' }"
+          <li class="nav-item" v-if="user.length !== 0">
+            <router-link data-offset="90" :to="{ name: 'Profile' }"
               ><span
-                >{{user.user.first_name}}<svg
+                >{{ user.user.first_name
+                }}<svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   widght="30"
@@ -144,14 +141,16 @@
                   /></svg
               ></span>
             </router-link>
-            </a>
           </li>
 
-          <li class="nav-item nav-link"
-              data-offset="90"
-              v-if="isLoggedIn"
-              @click.prevent="logout"
-              >logout
+          <li
+            class="nav-item nav-link"
+            type="button"
+            data-offset="90"
+            v-if="isLoggedIn"
+            @click.prevent="logout"
+          >
+            logout
           </li>
         </ul>
       </div>
@@ -169,7 +168,7 @@ export default {
     ...mapState({
       user: state => state.auth.user
     }),
-  ...mapGetters(["isLoggedIn"])
+    ...mapGetters(["isLoggedIn"])
   },
   mounted() {
     User.auth().then(response => {
@@ -180,7 +179,7 @@ export default {
     logout() {
       User.logout().then(() => {
         localStorage.removeItem("token");
-         this.$store.commit("LOGIN", false);
+        this.$store.commit("LOGIN", false);
         this.$router.push({ name: "Home" });
       });
     }

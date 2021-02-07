@@ -21,6 +21,11 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: "Nunito", sans-serif;
+  height: 100vh;
+  margin: 0;
+}
 .h-screen {
   height: 100%;
 }

@@ -22,7 +22,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-      ...mapState({
+    ...mapState({
       user: state => state.auth.user
     })
   },
