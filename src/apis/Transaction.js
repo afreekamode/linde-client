@@ -15,7 +15,7 @@ export default {
   },
 
   all_trxn_keys() {
-    return Api().get("/trxn/transaction/trxn/");
+    return Api().get("/trxn/transaction/trxn");
   },
 
   a_trxn_key(id) {
@@ -23,7 +23,7 @@ export default {
   },
 
   mykeys() {
-    return Api().get("/trxn/transaction/key/");
+    return Api().get("/trxn/transaction/key");
   },
   deletekey(key) {
     return Api().delete("/trxn/delete-key/" + key);
