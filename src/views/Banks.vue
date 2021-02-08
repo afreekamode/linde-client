@@ -237,9 +237,8 @@ export default {
       Key.cash_deposit(this.form)
         .then(response => {
           if (response.status == 201) {
-            this.flash(response.data.message, "success");
-            this.form = "";
-            this.item = "";
+           alert(response.data.message)
+           this.$router.push({ name: "MyTransactionKey" });
           } else {
             alert(response.data.message);
           }
