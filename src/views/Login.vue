@@ -10,6 +10,7 @@
             Sign in
           </div>
           <div class="card-body">
+             <form ref="myform" @submit.prevent="login">
             <div class="form-group row">
               <label class="col-md-4 col-form-label text-md-right">Email</label>
               <div class="col-md-6">
@@ -35,6 +36,7 @@
                   v-model="form.password"
                   class="form-control"
                   id="password"
+                  aria-current="password"
                 />
                 <span class="text-danger" v-if="errors.password">
                   {{ errors.password[0] }}
@@ -53,6 +55,7 @@
                 </button>
               </div>
             </div>
+             </form>
           </div>
         </div>
       </div>

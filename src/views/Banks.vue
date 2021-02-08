@@ -234,20 +234,14 @@ export default {
     },
     confirmed_deposit(e) {
       e.preventDefault();
-      Key.cash_deposit(this.form)
-        .then(response => {
-          if (response.status == 201) {
-           alert(response.data.message)
-           this.$router.push({ name: "MyTransactionKey" });
-          } else {
-            alert(response.data.message);
-          }
-        })
-        .catch(error => {
-          if (error.response.status == 422) {
-            this.errors = error.response.data.errors;
-          }
-        });
+      Key.cash_deposit(this.form).then(response => {
+        if (response.status == 201) {
+          alert(response.data.message);
+          this.$router.push({ name: "MyTransactionKey" });
+        } else {
+          alert(response.data.message);
+        }
+      });
     }
   }
 };

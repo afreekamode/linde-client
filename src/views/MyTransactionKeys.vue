@@ -7,8 +7,8 @@
       <div class="col-md-8">
         <div class="card-body" v-if="items">
           <h3 class="card-title">Transaction Keys</h3>
-           <div v-if="loading" class="btn btn-block">Loading...</div>
-           <div v-if="items.length == 0">
+          <div v-if="loading" class="loading">Loading...</div>
+          <div v-if="items.length == 0">
             <div class="col-md-6 offset-md-4" v-if="!loading">
               <button class="btn btn-block" type="submit">
                 <router-link
@@ -120,7 +120,8 @@ export default {
       Trxn.mykeys()
         .then(response => {
           this.items = response.data;
-        }).finally(() => (this.loading = false));
+        })
+        .finally(() => (this.loading = false));
     },
     refreshKey(id) {
       Trxn.refresh_trxn_keys(id).then(response => {
@@ -136,10 +137,11 @@ export default {
           if (response.status == 200) {
             this.flash("Key deleted Successfully", "success");
             this.getKeys();
-          }else{
+          } else {
             this.flash(response.data.message, "info");
           }
-        }).finally(() => (this.loading = false));
+        })
+        .finally(() => (this.loading = false));
     },
     flash(message) {
       this.show = true;
@@ -180,5 +182,12 @@ span {
   right: 25px;
   bottom: 15px;
   z-index: 1;
+}
+.loading {
+  width: 250px;
+  right: 55px;
+  bottom: 15px;
+  z-index: 1;
+  color: blueviolet;
 }
 </style>

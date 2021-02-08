@@ -197,15 +197,14 @@ export default {
   methods: {
     generate(e) {
       e.preventDefault();
-      Key.generate_transaction_key(this.form)
-        .then(response => {
-          if(response.status === 201){
-            alert(response.data.message)
+      Key.generate_transaction_key(this.form).then(response => {
+        if (response.status === 201) {
+          alert(response.data.message);
           this.$router.push({ name: "MyTransactionKey" });
-          }else{
-            alert(response.data.message)
-          }
-        })
+        } else {
+          alert(response.data.message);
+        }
+      });
     }
   }
 };

@@ -147,8 +147,16 @@
             class="nav-item nav-link"
             type="button"
             data-offset="90"
-            v-if="isLoggedIn"
+            v-if="user.length !== 0"
             @click.prevent="logout"
+          > logout
+          </li>
+           <li
+            class="nav-item nav-link"
+            type="button"
+            data-offset="90"
+            v-else-if="isLoggedIn"
+            @click.prevent="expired"
           >
             logout
           </li>
@@ -182,6 +190,11 @@ export default {
         this.$store.commit("LOGIN", false);
         this.$router.push({ name: "Home" });
       });
+    },
+    expired() {
+        localStorage.removeItem("token");
+        this.$store.commit("LOGIN", false);
+        this.$router.push({ name: "Login" });
     }
   }
 };
