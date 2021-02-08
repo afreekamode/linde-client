@@ -244,11 +244,6 @@ export default {
             alert(response.data.message);
           }
         })
-        .catch(error => {
-          if (error.response.status == 422) {
-            this.errors = error.response.data.errors;
-          }
-        });
     }
   }
 };
