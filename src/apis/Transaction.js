@@ -17,11 +17,12 @@ export default {
   all_trxn_keys() {
     return Api().get("/trxn/transaction/trxn");
   },
-
+  all_trxn_history() {
+    return Api().get("/trxn//transaction/history");
+  },
   a_trxn_key(id) {
     return Api().get("/trxn/transaction/key/" + id);
   },
-
   mykeys() {
     return Api().get("/trxn/transaction/key");
   },

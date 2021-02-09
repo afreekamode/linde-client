@@ -108,6 +108,17 @@
             </router-link>
           </li>
 
+           <li class="nav-item" v-if="user.length !== 0">
+            <router-link
+              v-if="user.user.user_role == 'teller'"
+              class="nav-link"
+              data-offset="90"
+              :to="{ name: 'TransactionHistory' }"
+            >
+              Transaction History
+            </router-link>
+          </li>
+
           <li class="nav-item">
             <router-link
               v-if="isLoggedIn"
