@@ -27,9 +27,11 @@
                   Key
                 </label>
                 <div class="col-md-6">
-                  <h4 class="itemText" style="color:green">
+                  <p class="itemText" style="color:green">
                     {{ item.transaction_ref }}
-                  </h4>
+                    | <span>{{ item.receiver_fullname }}</span>
+                    | <span>{{ item.amount }}</span>
+                  </p>
                 </div>
               </div>
               <div class="form-group row">
@@ -172,6 +174,7 @@ export default {
 }
 .itemText {
   margin-left: 5px;
+  font-size: 15px;
 }
 span {
   padding: 5px;
