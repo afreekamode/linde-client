@@ -6,6 +6,7 @@ import Register from "../views/Register.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Banks from "../views/Banks.vue";
 import NewTransactionKey from "../views/NewTransactionKey.vue";
+import TransactionHistory from "../views/TransactionHistoryBank.vue";
 import TransactionKey from "../views/TransactionKey.vue";
 import Landing from "../views/Landing.vue";
 import Bill from "../views/Bill.vue";
@@ -91,6 +92,12 @@ const routes = [
     path: "/mytransactionkey",
     name: "MyTransactionKey",
     component: MyTransactionKey,
+    meta: { authOnly: true }
+  },
+  {
+    path: "/transactionhistory",
+    name: "TransactionHistory",
+    component: TransactionHistory,
     meta: { authOnly: true }
   }
 ];

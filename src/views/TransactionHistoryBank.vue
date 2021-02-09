@@ -2,14 +2,17 @@
   <div class="home col-8 mx-auto py-5 mt-5">
     <div class="card">
       <div>
-        <h4 class="card-title">Transaction Key</h4>
+        <h4 class="card-title">Transaction History</h4>
         <table
           class="table table-bordered table-responsive-md table-striped text-center"
         >
           <thead class="blue lighten-4">
             <tr>
               <th class="text-center">Transaction Key</th>
-              <th class="text-center">Expire on</th>
+              <th class="text-center">Deposited on</th>
+              <th class="text-center">Deposited From</th>
+              <th class="text-center">Deposited To</th>
+              <th class="text-center">Amount Deposited</th>
               <th class="text-center">Status</th>
             </tr>
           </thead>
@@ -24,16 +27,27 @@
                 {{ item.transaction_ref }}
               </td>
               <td class="pt-3-half">
-                {{ item.txn_ref_ttl }}
+                {{ item.created_at }}
+              </td>
+              <td class="pt-3-half">
+                {{ item.from_bank_name }}
+              </td>
+              <td class="pt-3-half">
+                {{ item.to_bank_name }}
+              </td>
+              <td class="pt-3-half">
+                {{ item.amount }}
+              </td>
+               <td class="pt-3-half">
+                {{ item.tnx_status}}
               </td>
               <td>
                 <span class="table-remove">
                   <button
                     type="button"
                     class="btn btn-success btn-rounded btn-sm my-0"
-                    @click="refresh"
                   >
-                    Refresh key
+                    Actions
                   </button>
                 </span>
               </td>
@@ -59,18 +73,9 @@ export default {
 
   methods: {
     getKeys() {
-      Transaction.all_trxn_keys().then(response => {
+      Transaction.all_trxn_history().then(response => {
         this.items = response.data;
       });
-    },
-    refresh() {
-      Transaction.refresh_trxn_keys(this.item.transaction_ref).then(
-        response => {
-          if (response.status == 200) {
-            this.$emit("keyChange");
-          }
-        }
-      );
     }
   }
 };
