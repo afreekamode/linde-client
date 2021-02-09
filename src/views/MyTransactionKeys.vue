@@ -27,13 +27,13 @@
                   Transaction Details
                 </label>
                 <div class="col-md-6">
-                  <p class="itemText" style="color:green">
+                  <p class="itemText" style="color:green;font-weight: bold;">
                     Key: <span>{{ item.transaction_ref }}</span>
                   </p>
-                  <p class="itemText">
+                  <p class="itemText" style="color:green;font-weight: bold">
                     Recipient Name: <span>{{ item.receiver_fullname }}</span>
                   </p>
-                  <p class="itemText" style="color:green">
+                  <p class="itemText" style="color:green;font-weight: bold">
                     Amount: <span>&#8358;{{ item.amount }}</span>
                   </p>
                 </div>
@@ -165,6 +165,7 @@ export default {
 <style scoped>
 label{
   color: darkslategray;
+  font-weight: bolder;
 }
 .card {
   display: flex;
