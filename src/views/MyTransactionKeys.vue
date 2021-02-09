@@ -29,8 +29,8 @@
                 <div class="col-md-6">
                   <p class="itemText" style="color:green">
                     {{ item.transaction_ref }}
-                    | <span>{{ item.receiver_fullname }}</span>
-                    | <span>{{ item.amount }}</span>
+                    | Name: <span>{{ item.receiver_fullname }}</span>
+                    | Amount: <span>&#8358;{{ item.amount }}</span>
                   </p>
                 </div>
               </div>

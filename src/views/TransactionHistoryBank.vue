@@ -37,7 +37,7 @@
                 {{ item.to_bank_name }}
               </td>
               <td class="pt-3-half">
-                {{ item.amount }}
+                &#8358;{{ item.amount }}
               </td>
                <td 
                class="pt-3-half"
