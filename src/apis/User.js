@@ -3,22 +3,22 @@ import Api from "./Api";
 
 export default {
   register(form) {
-    return Api().post("/api/v1/user/register/user", form);
+    return Api().post("/user/register/user", form);
   },
   update(user) {
-    return Api().put("/api/v1/user/user/edit", user);
+    return Api().put("/user/user/edit", user);
   },
   login(form) {
-    return Api().post("/api/v1/user/login", form);
+    return Api().post("/user/login", form);
   },
   verify_email(verifycode) {
-    return Api().post("/api/v1/user/verify/" + verifycode);
+    return Api().post("/user/verify/" + verifycode);
   },
   logout() {
-    return Api().post("/api/v1/user/logout");
+    return Api().post("/user/logout");
   },
 
   auth() {
-    return Api().get("/api/v1/user/profile");
+    return Api().get("/user/profile");
   }
 };

@@ -3,14 +3,14 @@ import Api from "./Api";
 
 export default {
   register_bank(form) {
-    return Api().post("/api/v1/user/register/bank", form);
+    return Api().post("/user/register/bank", form);
   },
 
   banks() {
-    return Api().get("/api/v1/all/banks");
+    return Api().get("/all/banks");
   },
 
   auth() {
-    return Api().get("/api/v1/user/profile");
+    return Api().get("/user/profile");
   }
 };
