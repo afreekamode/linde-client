@@ -24,13 +24,17 @@
             <div class="card">
               <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-right">
-                  Key
+                  Transaction Details
                 </label>
                 <div class="col-md-6">
                   <p class="itemText" style="color:green">
-                    {{ item.transaction_ref }}
-                    | Name: <span>{{ item.receiver_fullname }}</span>
-                    | Amount: <span>&#8358;{{ item.amount }}</span>
+                    Key: <span>{{ item.transaction_ref }}</span>
+                  </p>
+                  <p class="itemText">
+                    Recipient Name: <span>{{ item.receiver_fullname }}</span>
+                  </p>
+                  <p class="itemText" style="color:green">
+                    Amount: <span>&#8358;{{ item.amount }}</span>
                   </p>
                 </div>
               </div>
@@ -159,6 +163,9 @@ export default {
 };
 </script>
 <style scoped>
+label{
+  color: darkslategray;
+}
 .card {
   display: flex;
   justify-content: center;
@@ -175,6 +182,7 @@ export default {
 .itemText {
   margin-left: 5px;
   font-size: 15px;
+  color: rgb(79, 79, 126);
 }
 span {
   padding: 5px;
