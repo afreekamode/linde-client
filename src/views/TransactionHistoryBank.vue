@@ -14,6 +14,7 @@
               <th class="text-center">Deposited To</th>
               <th class="text-center">Amount Deposited</th>
               <th class="text-center">Status</th>
+              <th class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +39,13 @@
               <td class="pt-3-half">
                 {{ item.amount }}
               </td>
-               <td class="pt-3-half">
+               <td 
+               class="pt-3-half"
+               :class="[
+                    item.tnx_status == 'success' ? 'success' : 'failed',
+                    'plus'
+                  ]"
+               >
                 {{ item.tnx_status}}
               </td>
               <td>
@@ -80,3 +87,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+.success {
+  background-color: chartreuse;
+  color: aliceblue;
+}
+.failed {
+  background-color: rgb(223, 24, 24);
+}
+</style>
