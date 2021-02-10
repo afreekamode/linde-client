@@ -5,7 +5,7 @@
     <div class="flex-center position-ref full-height flex" id="main">
       <div class="home text-center py-6 mt-6" style="margin:20px;">
         <h5>
-          Hey Hi <em v-if="user.length != 0">{{ user.user.first_name }}</em
+          Hi <em v-if="user.length != 0">{{ user.user.first_name }}</em
           >!<br />
           Welcome
         </h5>

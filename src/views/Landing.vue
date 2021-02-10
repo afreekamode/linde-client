@@ -11,7 +11,7 @@
       <section id="best-features" class="text-center">
         <!-- Heading -->
         <h2 class="mb-5 font-weight-bold" style="color:orange;">
-          What do wanna do?
+          What do you want to do?
         </h2>
 
         <!--Grid row-->
@@ -20,10 +20,9 @@
           <div class="col-md-8">
             <!-- Description -->
             <p class="grey-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
-              voluptate hic provident nulla repellat facere esse molestiae ipsa
-              labore porro minima quam quaerat rem, natus repudiandae debitis
-              est sit pariatur.
+              Welcome to Lindi, your one stop payment platform for all 
+              payment remittance; cash and electronic. Navigate through 
+              the payment methods below and select the option that best suits your needs.
             </p>
           </div>
           <!--Grid column-->
@@ -48,10 +47,10 @@
                 />
               </svg>
             </router-link>
-            <h4 class="my-4 font-weight-bold">Cash deposit</h4>
+            <h4 class="my-4 font-weight-bold">Cash Deposit</h4>
             <p class="grey-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.
+             Deposit cash to a beneficiary’s account and from any bank of your choice. 
+             Cash deposits are received by beneficiary immediately.
             </p>
           </div>
           <!--Grid column-->
@@ -74,8 +73,7 @@
             <img src="" />
             <h4 class="my-4 font-weight-bold">Transfer</h4>
             <p class="grey-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.
+              LTransfer money to relatives, friends and businesses in a fast, secure and convenient manner.
             </p>
           </div>
           <!--Grid column-->
@@ -98,8 +96,7 @@
             </router-link>
             <h4 class="my-4 font-weight-bold">Pay Bills</h4>
             <p class="grey-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.
+              Pay for all services and utility bills without hassle. Select service provider and pay your bills with ease.
             </p>
           </div>
           <!--Grid column-->

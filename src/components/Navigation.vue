@@ -160,7 +160,7 @@
             data-offset="90"
             v-if="user.length !== 0"
             @click.prevent="logout"
-          > logout
+          > Logout
           </li>
            <li
             class="nav-item nav-link"
@@ -169,7 +169,7 @@
             v-else-if="isLoggedIn"
             @click.prevent="expired"
           >
-            logout
+            Logout
           </li>
         </ul>
       </div>

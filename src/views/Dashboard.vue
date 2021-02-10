@@ -5,7 +5,7 @@
     <div class="flex-center position-ref full-height flex" id="main">
       <div class="home text-center py-6 mt-6">
         <h4>
-          Hey Hi <em v-if="user">{{ user.user.first_name }}</em
+          Hi <em v-if="user">{{ user.user.first_name }}</em
           >!<br />
           Welcome
         </h4>
