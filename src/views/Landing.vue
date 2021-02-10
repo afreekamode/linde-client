@@ -13,7 +13,6 @@
         <h2 class="mb-5 font-weight-bold" style="color:orange;">
           What do you want to do?
         </h2>
-
         <!--Grid row-->
         <div class="row d-flex justify-content-center mb-4">
           <!--Grid column-->
@@ -73,7 +72,7 @@
             <img src="" />
             <h4 class="my-4 font-weight-bold">Transfer</h4>
             <p class="grey-text">
-              LTransfer money to relatives, friends and businesses in a fast, secure and convenient manner.
+              Transfer money to relatives, friends and businesses in a fast, secure and convenient manner.
             </p>
           </div>
           <!--Grid column-->
