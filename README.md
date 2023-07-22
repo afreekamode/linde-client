@@ -1,4 +1,4 @@
-# lindi-App
+# lindi-App - Client Side
 
 ## Project setup
 
